@@ -11,7 +11,7 @@ class Validator{
     }
   
     validate(){
-        return (this.errors.length>0);
+        return (Object.keys(this.errors).length==0);
     }
   
     input=(_key,_input)=>{

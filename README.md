@@ -1,19 +1,28 @@
-# DynamicValidator
-[![Star Count](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=Star&query=stargazers_count&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fhelloakn%2FDynamicValidator)](https://github.com/helloakn/DynamicValidator) [![Licence](https://img.shields.io/badge/dynamic/json?color=informational&label=LICENCE&query=license.name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fhelloakn%2FDynamicValidator)](https://github.com/helloakn/DynamicValidator) [![Language](https://img.shields.io/badge/dynamic/json?color=blueviolet&label=Language&query=language&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fhelloakn%2FDynamicValidator)](https://github.com/helloakn/DynamicValidator)
+# Dynamic Validator in JS
+[![Star Count](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=Star&query=stargazers_count&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fhelloakn%2Fdynamic-validator.js)](https://github.com/helloakn/dynamic-validator.js) [![Licence](https://img.shields.io/badge/dynamic/json?color=informational&label=LICENCE&query=license.name&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fhelloakn%2Fdynamic-validator.js)](https://github.com/helloakn/dynamic-validator.js) [![Language](https://img.shields.io/badge/dynamic/json?color=blueviolet&label=Language&query=language&url=https%3A%2F%2Fapi.github.com%2Frepos%2Fhelloakn%2Fdynamic-validator.js)](https://github.com/helloakn/dynamic-validator.js)
 
-npm validator
+npm package for easy validation in javascript.
 
+## Installation
+```
+npm install dynamic-validator.js
+```
 ## Syntax
 ```javascript
-validator.input("value to validate")->functions();
+Validator.Rule(validator=>{
+    ... conditions here ...
+});
+
 ```
+
 
 ## Example
 ```javascript
-const {Validator} = require('DynamicValidator');
+const {Validator} = require('dynamic-validator.js');
 
 const v = Validator.Rule(
     validator=>{
+
         validator.input("test1","hello")
         .isArray("no array")
         .isNumber("no number")
@@ -29,6 +38,7 @@ const v = Validator.Rule(
         .customFunction(function(x){
             x.setError("hoho");
         });
+
     }
 );
 if(!v.validate()){
