@@ -12,7 +12,7 @@ class Validator{
     }
 
     validate(){
-        return this.errors;
+        return (this.errors.length>0);
     }
 
     input=(_input)=>{
