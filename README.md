@@ -10,6 +10,7 @@ validator.input("value to validate")->functions();
 
 ## Example
 ```javascript
+const {Validator} = require('DynamicValidator');
 
 const v = Validator.Rule(
     validator=>{
@@ -37,7 +38,7 @@ if(!v.validate()){
 ## Function List
 Function | #Remark
 --- | --- 
-isArray | check the input value
-isNumber | #
-isEmpty | # if the input value is undefined or null or empty
-isEmail | #
+isArray | # validator.isArray('Error Message');
+isNumber | # validator.isNumber('Error Message');
+isEmpty | # validator.isEmpty('Error Message');
+isEmail | # validator.isEmail('Error Message');
