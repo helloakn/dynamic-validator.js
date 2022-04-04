@@ -1,0 +1,23 @@
+{
+  "name": "validator",
+  "version": "1.0.0",
+  "description": "npm validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helloakn/Validator.git"
+  },
+  "keywords": [
+    "Validator",
+    "Validate"
+  ],
+  "author": "Aung Kyaw Nyunt",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/helloakn/Validator/issues"
+  },
+  "homepage": "https://github.com/helloakn/Validator#readme"
+}
