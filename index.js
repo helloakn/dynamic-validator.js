@@ -1,27 +1,26 @@
-
 class Validator{
 
     constructor(){
-        this.errors = [];
+        this.errors = {};
     }
-
+  
     static Rule(_callBack) {
         const validator = new Validator();
         _callBack(validator);
         return validator;
     }
-
+  
     validate(){
         return (this.errors.length>0);
     }
-
+  
     input=(_key,_input)=>{
         this._input = _input;
         this._key = _key;
         this._inputErr = [];
         return this;
     }
-
+  
     isArray=(_msg)=>{
         if(this._input === undefined){
             this._inputErr.push(_msg);
@@ -33,7 +32,35 @@ class Validator{
         }
         return this;
     }
-
+  
+    isAllNumberinArray=(_msg)=>{
+      if(this._input === undefined){
+          this._inputErr.push(_msg);
+          this.errors[this._key] = this._inputErr;
+      }
+      else if(!Array.isArray(this._input)){
+          this._inputErr.push(_msg);
+          this.errors[this._key] = this._inputErr;
+      }
+      else{
+        let errs = [];
+        let tf = true;
+        this._input.map((x,i)=>{
+          //console.log('x',(typeof x))
+          if(typeof x !== 'number'){
+            tf = false;
+            errs.push({[i]:_msg});
+          }
+        });
+        if(tf==false){
+          //console.log('errs',errs);
+          this._inputErr.push(errs);
+          this.errors[this._key] = this._inputErr;
+        }
+      }
+      return this;
+  }
+  
     isEmail= (_msg) => {
         const validateEmail = (email) => {
             return String(email)
@@ -53,7 +80,7 @@ class Validator{
         }
         return this;
     }
-
+  
     isNumber=(_msg)=>{
         if(this._input === undefined){
             this._inputErr.push(_msg);
@@ -65,7 +92,7 @@ class Validator{
         }
         return this;
     }
-
+  
     isEmpty=(_msg)=>{
         if(this._input === undefined){
             this._inputErr.push(_msg);
@@ -77,40 +104,17 @@ class Validator{
         }
         return this;
     }
-
+  
     customFunction=(_callback)=>{
         _callback(this);
         return this;
     }
-
+  
     setError=(_msg)=>{
         this._inputErr.push(_msg);
         this.errors[this._key] = this._inputErr;
     }
-}
-
-const v = Validator.Rule(
-    validator=>{
-        validator.input("test1","hello")
-        .isArray("no array")
-        .isNumber("no number")
-        .isEmpty("no number")
-        .customFunction(function(x){
-            x.setError("hoho");
-        });
-
-        validator.input("test2","test")
-        .isArray("no array")
-        .isNumber("no number")
-        .isEmpty("no number")
-        .customFunction(function(x){
-            x.setError("hoho");
-        });
-    }
-);
-
-if(!v.validate()){
-    console.log(v.errors);
-}
-
-module.exports  = Validator;
+  }
+  
+  
+  module.exports  = Validator;

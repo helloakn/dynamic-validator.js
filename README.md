@@ -42,3 +42,4 @@ isArray | # validator.isArray('Error Message');
 isNumber | # validator.isNumber('Error Message');
 isEmpty | # validator.isEmpty('Error Message');
 isEmail | # validator.isEmail('Error Message');
+isAllNumberinArray | # validator.isAllNumberinArray('is not number');
