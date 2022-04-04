@@ -15,8 +15,9 @@ class Validator{
         return (this.errors.length>0);
     }
 
-    input=(_input)=>{
+    input=(_key,_input)=>{
         this._input = _input;
+        this._key = _key;
         this._inputErr = [];
         return this;
     }
@@ -24,11 +25,11 @@ class Validator{
     isArray=(_msg)=>{
         if(this._input === undefined){
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         else if(!Array.isArray(this._input)){
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         return this;
     }
@@ -44,11 +45,11 @@ class Validator{
     
         if(this._input === undefined){
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         else if(!validateEmail(this._input)){
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         return this;
     }
@@ -56,11 +57,11 @@ class Validator{
     isNumber=(_msg)=>{
         if(this._input === undefined){
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         else if(isNaN(this._input)){
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         return this;
     }
@@ -68,11 +69,11 @@ class Validator{
     isEmpty=(_msg)=>{
         if(this._input === undefined){
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         else if(this._input==""){  
             this._inputErr.push(_msg);
-            this.errors[this._input] = this._inputErr;
+            this.errors[this._key] = this._inputErr;
         }
         return this;
     }
@@ -84,13 +85,13 @@ class Validator{
 
     setError=(_msg)=>{
         this._inputErr.push(_msg);
-        this.errors[this._input] = this._inputErr;
+        this.errors[this._key] = this._inputErr;
     }
 }
 
 const v = Validator.Rule(
     validator=>{
-        validator.input("hello")
+        validator.input("test1","hello")
         .isArray("no array")
         .isNumber("no number")
         .isEmpty("no number")
@@ -98,7 +99,7 @@ const v = Validator.Rule(
             x.setError("hoho");
         });
 
-        validator.input("test")
+        validator.input("test2","test")
         .isArray("no array")
         .isNumber("no number")
         .isEmpty("no number")
@@ -108,4 +109,8 @@ const v = Validator.Rule(
 
     }
 );
-console.log(v.validate()); 
+if(!v.validate()){
+    console.log(v.errors);
+}
+
+module.exports  = Validator;
