@@ -106,9 +106,9 @@ const v = Validator.Rule(
         .customFunction(function(x){
             x.setError("hoho");
         });
-
     }
 );
+
 if(!v.validate()){
     console.log(v.errors);
 }

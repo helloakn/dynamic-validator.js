@@ -10,9 +10,10 @@ validator.input("value to validate")->functions();
 
 ## Example
 ```javascript
+
 const v = Validator.Rule(
     validator=>{
-        validator.input("hello")
+        validator.input("test1","hello")
         .isArray("no array")
         .isNumber("no number")
         .isEmpty("no number")
@@ -20,14 +21,13 @@ const v = Validator.Rule(
             x.setError("hoho");
         });
 
-        validator.input("test")
+        validator.input("test2","test")
         .isArray("no array")
         .isNumber("no number")
         .isEmpty("no number")
         .customFunction(function(x){
             x.setError("hoho");
         });
-
     }
 );
 if(!v.validate()){
