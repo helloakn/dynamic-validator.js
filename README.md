@@ -12,37 +12,39 @@ npm install dynamic-validator.js
 Validator.Rule(validator=>{
     ... conditions here ...
 });
+// ---
+Validator.Rule(validator=>{
+    // validator.input(key,value)
+    
+});
 
 ```
-
 
 ## Example
 ```javascript
 const {Validator} = require('dynamic-validator.js');
 
+let _id = "";
 const v = Validator.Rule(
     validator=>{
 
-        validator.input("test1","hello")
-        .isArray("no array")
-        .isNumber("no number")
-        .isEmpty("no number")
-        .customFunction(function(x){
-            x.setError("hoho");
-        });
-
-        validator.input("test2","test")
-        .isArray("no array")
-        .isNumber("no number")
-        .isEmpty("no number")
-        .customFunction(function(x){
-            x.setError("hoho");
-        });
+        validator.input("id",_id)
+                .isNumber("Id should be number")
+                .isEmpty("Id should not be empty");
 
     }
 );
 if(!v.validate()){
   console.log(v.errors);
+}
+```
+#### output
+```javascript
+{
+    "id": [
+        "Id should be number",
+        "Id should not be empty"
+    ]
 }
 ```
 ## Function List
@@ -53,3 +55,4 @@ isNumber | # validator.isNumber('Error Message');
 isEmpty | # validator.isEmpty('Error Message');
 isEmail | # validator.isEmail('Error Message');
 isAllNumberinArray | # validator.isAllNumberinArray('is not number');
+isDate | # to check valid date
